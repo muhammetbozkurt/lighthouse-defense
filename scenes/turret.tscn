@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bof7vm0cvu8nt"]
+
+[ext_resource type="Script" uid="uid://c62k2i4lpy5qi" path="res://scripts/turret.gd" id="1_x3mc5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_el7wl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_485p4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x3mc5"]
+radius = 15.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x3mc5"]
+top_radius = 0.01
+bottom_radius = 0.1
+height = 0.5
+
+[node name="Turret" type="StaticBody3D"]
+script = ExtResource("1_x3mc5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_el7wl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_485p4")
+
+[node name="AttackRange" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_x3mc5")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="face" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.997929, 0.0641744, 0.00437498, 0, 0.0680153, -0.997684, -0.0643234, -0.995618, -0.0678745, 0.0913216, 0.920898, -0.783546)
+mesh = SubResource("CylinderMesh_x3mc5")

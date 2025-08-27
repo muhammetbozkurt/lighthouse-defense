@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0wrbsrgxfn0o"]
+
+[ext_resource type="Script" uid="uid://d3pekmt3008hk" path="res://scripts/portal.gd" id="1_v0xau"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppl40"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v0xau"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ffj6"]
+transparency = 1
+
+[node name="Portal" type="Area3D"]
+collision_layer = 2
+script = ExtResource("1_v0xau")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ppl40")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00358868, 0, 0.00196028)
+mesh = SubResource("BoxMesh_v0xau")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ffj6")
+
+[node name="LandPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70285, -0.0197103, -0.023637)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
