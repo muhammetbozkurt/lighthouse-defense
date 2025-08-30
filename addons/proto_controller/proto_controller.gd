@@ -5,6 +5,7 @@
 
 extends CharacterBody3D
 
+@export var can_move_turrets : bool = true
 ## Can we move around?
 @export var can_move : bool = true
 ## Are we affected by gravity?
@@ -43,14 +44,21 @@ extends CharacterBody3D
 @export var input_sprint : String = "sprint"
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
+@export var input_move_turret : String = "move_turret"
+
+@export_group("Interaction")
+## How far the player can interact with objects.
+@export var interaction_ray_length : float = 10.0
 
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
+var held_turret: StaticBody3D = null # Variable to hold the picked-up turret
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
+@onready var camera: Camera3D = $Head/Camera3D # Add reference to the camera
 @onready var collider: CollisionShape3D = $Collider
 @onready var manager: Node3D = %Manager
 @onready var deploy_point: Marker3D = $DeployPoint
@@ -59,6 +67,47 @@ func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+
+
+func pickup_turret():
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(
+		camera.global_position, 
+		camera.global_position - camera.global_transform.basis.z * interaction_ray_length
+	)
+	query.exclude = [self] # Exclude the player from the raycast
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		var body = result.collider
+		# Check if we hit a turret that can be picked up
+		if body.is_in_group("turrets") and body.has_method("pickup"):
+			held_turret = body
+			held_turret.remove_from_group("turrets") # Temporarily remove from group
+			held_turret.pickup()
+			
+			# Reparent the turret to the DeployPoint to carry it
+			held_turret.reparent(deploy_point)
+			held_turret.position = Vector3.ZERO
+			held_turret.rotation = Vector3.ZERO
+			print("Picked up turret: ", held_turret.name)
+
+## Places the currently held turret.
+func place_held_turret():
+	if not is_instance_valid(held_turret):
+		return
+	
+	var turret_to_place = held_turret
+	held_turret = null
+	
+	# Reparent the turret back to the main scene
+	turret_to_place.reparent(get_tree().current_scene)
+	
+	if turret_to_place.has_method("place"):
+		turret_to_place.place()
+		turret_to_place.add_to_group("turrets") # Add back to turrets group
+		print("Placed turret: ", turret_to_place.name)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -77,6 +126,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			enable_freefly()
 		else:
 			disable_freefly()
+	
+	if can_move_turrets and Input.is_action_just_pressed(input_move_turret):
+		if held_turret:
+			place_held_turret()
+		else:
+			pickup_turret()
 
 func _physics_process(delta: float) -> void:
 	
