@@ -95,7 +95,6 @@ func check_wave_end() -> bool:
 
 func deploy_turret(position: Vector3) -> void:
 	if turret_scene == null: return
-	if not is_day: return
 	var size = get_tree().get_node_count_in_group("turrets")
 	if turret_limit <= size: return
 	
