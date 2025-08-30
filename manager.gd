@@ -38,14 +38,15 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_1):
 		is_day = not is_day
-		target_energy = 1.0 if is_day else 0.1
+		target_energy = 1.0 if is_day else 0.06
 	
 	# Smoothly transition the light_energy towards the target_energy
 	sun.light_energy = lerp(sun.light_energy, target_energy, delta * 2.0)
 	
-	# Start a wave at night if no wave is in progress and all enemies are defeated
-	if not is_day and not wave_in_progress and enemies_alive <= 0:
+	
+	if not is_day and enemies_alive <= 0 and Input.is_key_pressed(KEY_2):
 		start_next_wave()
+
 
 func generate_position(seed: Vector3) -> Vector3:
 	var spawn_direction = Vector3(randf_range(-1.0, 1.0), 0, randf_range(-1.0, 1.0)).normalized()
