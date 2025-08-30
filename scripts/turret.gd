@@ -26,9 +26,9 @@ func _process(delta: float) -> void:
 	if is_instance_valid(target):
 		# Point the turret towards the target
 		look_at(target.global_position, Vector3.UP)
-	#else:
+	else:
 		# If the current target is invalid, find a new one
-		#find_new_target()
+		find_new_target()
 
 func take_damage(amount: float) -> void:
 	health -= amount
@@ -38,7 +38,8 @@ func take_damage(amount: float) -> void:
 func _on_attack_range_body_entered(body: Node3D) -> void:
 	timer.start()
 	print(body.name)
-	if body.name == "Enemy" and not is_instance_valid(target):
+	
+	if body.is_in_group("enemy") and not is_instance_valid(target):
 		print(body.name, " enemy set")
 		target = body
 		
@@ -49,9 +50,11 @@ func _on_attack_range_body_exited(body: Node3D) -> void:
 
 func find_new_target() -> void:
 	var bodies_in_range = $AttackRange.get_overlapping_bodies()
+
 	for body in bodies_in_range:
-		if body.name == "Enemy":
+		if body.is_in_group("enemy"):
 			target = body
+			timer.start()
 			return
 
 func _on_attack_timer_timeout() -> void:

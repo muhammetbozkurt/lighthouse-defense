@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c021u5iesxvtq"]
+
+[ext_resource type="Script" uid="uid://c878tfbu3wqwe" path="res://scripts/tower.gd" id="1_2x682"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7j8ug"]
+top_radius = 2.0
+bottom_radius = 2.0
+height = 28.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2x682"]
+height = 28.0
+radius = 2.0
+
+[node name="Tower" type="StaticBody3D"]
+script = ExtResource("1_2x682")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_7j8ug")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_2x682")

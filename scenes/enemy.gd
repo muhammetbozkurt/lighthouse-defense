@@ -6,6 +6,9 @@ extends CharacterBody3D
 @export var attack_rate: float = 1.0
 @export var health: float = 10.0
 
+
+var manager: Node3D = null
+var tower: StaticBody3D = null
 var target: Node3D = null
 var can_attack: bool = true
 
@@ -16,10 +19,14 @@ func _process(delta: float) -> void:
 	if is_instance_valid(target):
 		var direction = (target.global_position - global_position).normalized()
 		velocity = direction * move_speed
+		velocity.y = -9.8 * delta
+
 		move_and_slide()
 		
 		# Check if the enemy is close enough to attack
-		if global_position.distance_to(target.global_position) < 2.0 and can_attack:
+		var target_vector = target.global_position
+		target_vector.y = global_position.y
+		if global_position.distance_to(target_vector) < 3.0 and can_attack:
 			attack_target()
 			can_attack = false
 			await get_tree().create_timer(1.0 / attack_rate).timeout
@@ -31,6 +38,7 @@ func take_damage(amount: float) -> void:
 	health -= amount
 	print("enemy health: ", health, " amount: ", amount)
 	if health <= 0:
+		manager.death_utils()
 		queue_free()
 
 func attack_target() -> void:
@@ -48,6 +56,9 @@ func find_new_target() -> void:
 		if distance < min_distance:
 			min_distance = distance
 			closest_turret = node
+	
+	if min_distance > global_position.distance_to(tower.global_position):
+		closest_turret = tower
 	
 	if closest_turret:
 		target = closest_turret

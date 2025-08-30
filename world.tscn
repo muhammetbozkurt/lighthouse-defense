@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbxc52jtk431k"]
+[gd_scene load_steps=10 format=3 uid="uid://bbxc52jtk431k"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cgt76278wajgg" path="res://manager.gd" id="1_tlwt5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bof7vm0cvu8nt" path="res://scenes/turret.tscn" id="2_dwbse"]
 [ext_resource type="PackedScene" uid="uid://d0wrbsrgxfn0o" path="res://scenes/portal.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://dycnhn8h3w8gx" path="res://scenes/projection.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://c021u5iesxvtq" path="res://scenes/tower.tscn" id="4_pkg7o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
 albedo_color = Color(0.310209, 0.481456, 0, 1)
@@ -24,52 +25,29 @@ initial_wave_size = 2
 [node name="Sun" type="DirectionalLight3D" parent="Manager"]
 transform = Transform3D(0.997018, 0.0509738, 0.0579406, -0.0771715, 0.658556, 0.748564, 0, -0.750803, 0.660526, 26.9119, 141.909, 59.1284)
 
+[node name="Tower" parent="." instance=ExtResource("4_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0.023)
+
 [node name="ProtoController" parent="." instance=ExtResource("1_f3sb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148211, -0.109653, 11.3793)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148211, -0.109653, 5.84459)
+up_direction = Vector3(0.0703492, 0.0703492, 0.995039)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.362, -0.873419, -1.8024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00585651, -0.0884396, 0.01087)
 use_collision = true
-size = Vector3(206.26, 0.166016, 300.158)
+size = Vector3(300, 0.166, 300)
 material = SubResource("StandardMaterial3D_aqk2v")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_f3sb7")
 
-[node name="Tower" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00062561, 14.2931, 2.7918)
-use_collision = true
-radius = 3.0
-height = 30.0
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Tower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118834, -0.617901, 0.136944)
-operation = 2
-radius = 2.0
-height = 28.9101
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Tower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0639802, -13.58, 2.4575)
-operation = 2
-size = Vector3(1.60168, 2.84521, 1.1864)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Tower"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033488, 14.888, -0.0859661)
-radius = 3.2
-height = 0.4
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Tower/CSGCylinder3D"]
-operation = 2
-radius = 3.0
-height = 0.4
-
 [node name="ToScoutPosition" parent="." node_paths=PackedStringArray("landing_zone") instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117242, 29.854, 2.85491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.6219, 0)
 landing_zone = NodePath("../ToEngineerPosition")
 
 [node name="ToEngineerPosition" parent="." node_paths=PackedStringArray("landing_zone") instance=ExtResource("2_fj7yv")]
-transform = Transform3D(-0.999967, 0, 0.00813323, 0, 1, 0, -0.00813323, 0, -0.999967, -0.131111, -0.0311931, 3.28111)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.0554924, 0.307028, 3.82197)
 landing_zone = NodePath("../ToScoutPosition")
 
 [node name="Projection" parent="." instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0447797, 29.3316, 2.71411)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00383997, 28.0158, -0.0447168)

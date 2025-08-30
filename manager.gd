@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var sun: DirectionalLight3D = $Sun
+@onready var tower: StaticBody3D = $"../Tower"
 
 @export var turret_scene: PackedScene
 @export_group("Enemy Settings")
@@ -52,6 +53,15 @@ func generate_position(seed: Vector3) -> Vector3:
 	
 	return seed + spawn_direction * spawn_distance
 
+func death_utils():
+	enemies_alive -= 1
+	
+	if enemies_alive <= 0:
+		enemies_alive = 0
+		wave_in_progress = false 
+	
+	
+
 func start_next_wave() -> void:
 	wave_in_progress = true
 	current_wave += 1
@@ -70,8 +80,10 @@ func start_next_wave() -> void:
 func spawn_enemy(spawn_center: Vector3) -> void:
 	if enemy_scene == null: return
 	var enemy_instance = enemy_scene.instantiate()
-	enemy_instance.add_to_group("")
+	enemy_instance.add_to_group("enemy")
 	if enemy_instance:
+		enemy_instance.manager = self
+		enemy_instance.tower = tower
 		var spawn_direction = Vector3(randf_range(-1.0, 1.0), 0, randf_range(-1.0, 1.0)).normalized()
 		var spawn_distance = randf_range(0, max_spawn_distance)
 		enemy_instance.global_position = spawn_center + spawn_direction * spawn_distance

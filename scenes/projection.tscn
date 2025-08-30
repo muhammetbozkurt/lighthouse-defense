@@ -4,11 +4,11 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fs1jf"]
 height = 0.001
-radius = 2.9
+radius = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2edca"]
-top_radius = 2.9
-bottom_radius = 2.9
+top_radius = 2.0
+bottom_radius = 2.0
 height = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uge3r"]
@@ -26,7 +26,7 @@ mesh = SubResource("CylinderMesh_2edca")
 surface_material_override/0 = SubResource("StandardMaterial3D_uge3r")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.813598, 0.581428, 0, -0.581428, -0.813598, 0.031, 1.10134, 2.5)
+transform = Transform3D(1, 0, 0, 0, -0.813598, 0.581428, 0, -0.581428, -0.813598, 0.0324925, 0.641076, 1.32392)
 light_color = Color(1, 0.894118, 1, 1)
 light_energy = 10.0
 shadow_enabled = true
