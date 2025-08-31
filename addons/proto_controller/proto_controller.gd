@@ -111,8 +111,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if has_gravity and not is_on_floor():
-		velocity += get_gravity() * delta
-		#velocity.y += -9.8 * delta
+		#velocity += get_gravity() * delta
+		velocity.y += -9.8 * delta
 
 	if can_jump and Input.is_action_just_pressed(get_player_action(input_jump)) and is_on_floor():
 		velocity.y = jump_velocity

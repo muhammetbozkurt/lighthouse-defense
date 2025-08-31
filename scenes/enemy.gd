@@ -20,6 +20,8 @@ func _process(delta: float) -> void:
 		var direction = (target.global_position - global_position).normalized()
 		velocity = direction * move_speed
 		velocity.y = -9.8 * delta
+		
+		look_at(target.global_position)
 
 		move_and_slide()
 		

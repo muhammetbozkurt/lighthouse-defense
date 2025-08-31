@@ -1,21 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://c021u5iesxvtq"]
+[gd_scene load_steps=8 format=3 uid="uid://c021u5iesxvtq"]
 
 [ext_resource type="Script" uid="uid://c878tfbu3wqwe" path="res://scripts/tower.gd" id="1_2x682"]
+[ext_resource type="PackedScene" uid="uid://dsgssip3b78yt" path="res://GLB format/tower-square-mid.glb" id="2_jfguu"]
+[ext_resource type="PackedScene" uid="uid://c770cjgpc3r0d" path="res://GLB format/tower-square-mid-windows.glb" id="3_85u2j"]
+[ext_resource type="PackedScene" uid="uid://c0eh2ob6ic1ad" path="res://GLB format/tower-square-mid-door.glb" id="4_xl0gn"]
+[ext_resource type="PackedScene" uid="uid://bnm2kmwggj53p" path="res://GLB format/tower-square.glb" id="5_vqps3"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_7j8ug"]
-top_radius = 2.0
-bottom_radius = 2.0
-height = 28.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_qfw7u"]
+size = Vector3(1, 8, 1)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2x682"]
-height = 28.0
-radius = 2.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8022"]
+size = Vector3(0.1, 0.2, 1)
 
 [node name="Tower" type="StaticBody3D"]
 script = ExtResource("1_2x682")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_7j8ug")
+[node name="tower-square-mid3" parent="." instance=ExtResource("2_jfguu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003021, 0.991514, -0.00343776)
+
+[node name="tower-square-mid-windows3" parent="." instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="tower-square-mid-windows2" parent="." instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="tower-square-mid-door2" parent="." instance=ExtResource("4_xl0gn")]
+
+[node name="tower-square2" parent="." instance=ExtResource("5_vqps3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[node name="tower-square-mid4" parent="." instance=ExtResource("2_jfguu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102499, 3.98272, -0.0130432)
+
+[node name="tower-square-mid-windows4" parent="." instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00722885, 5.99121, -0.00960541)
+
+[node name="tower-square-mid-windows5" parent="." instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00722885, 4.99121, -0.00960541)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_2x682")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_qfw7u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CollisionShape3D"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CollisionShape3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451837, 4.24977, 0)
+shape = SubResource("BoxShape3D_p8022")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.430653, 4.23189, 0.00937884)
+shape = SubResource("BoxShape3D_p8022")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="CollisionShape3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00419159, 4.24977, -0.432327)
+shape = SubResource("BoxShape3D_p8022")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="CollisionShape3D/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0253756, 4.23189, 0.449717)
+shape = SubResource("BoxShape3D_p8022")

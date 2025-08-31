@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp4sjf2v78thi"]
 
 [ext_resource type="Script" uid="uid://ddwsr35jbhepc" path="res://scenes/enemy.gd" id="1_7p1mj"]
+[ext_resource type="PackedScene" uid="uid://bn3v2oaxgspdk" path="res://GLB format/siege-ram.glb" id="2_md0e3"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_8tegq"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_7p1mj"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_7p1mj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_8tegq")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_7p1mj")
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.657462, 0)
+shape = SubResource("CapsuleShape3D_4ra3w")
+
+[node name="siege-ram2" parent="." instance=ExtResource("2_md0e3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

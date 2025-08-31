@@ -11,6 +11,9 @@ extends Node3D
 #@export var min_spawn_distance: float = 50.0
 @export var max_spawn_distance: float = 10.0
 
+@export var turret_limit = 6
+
+
 var is_day: bool = true
 var target_energy: float = 1.0
 var current_wave: int = 0
@@ -18,7 +21,6 @@ var enemies_alive: int = 0
 var wave_in_progress: bool = false
 var wave_delay_timer: Timer = null
 var current_turrets: Array[Node3D] = []
-var turret_limit = 3
 
 func _ready() -> void:
 	if enemy_scene == null:

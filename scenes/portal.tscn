@@ -23,7 +23,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00358868, 0, 0.00196028)
 mesh = SubResource("BoxMesh_v0xau")
 surface_material_override/0 = SubResource("StandardMaterial3D_1ffj6")
 
-[node name="LandPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

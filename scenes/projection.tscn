@@ -1,36 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dycnhn8h3w8gx"]
+[gd_scene load_steps=3 format=3 uid="uid://dycnhn8h3w8gx"]
 
 [ext_resource type="Script" uid="uid://mf6lqovfs43n" path="res://scripts/projection.gd" id="1_uge3r"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fs1jf"]
-height = 0.001
-radius = 2.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_2edca"]
-top_radius = 2.0
-bottom_radius = 2.0
-height = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uge3r"]
-albedo_color = Color(0.24, 0.417334, 1, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_uge3r"]
+size = Vector3(0.9, 0.1, 0.9)
 
 [node name="Projection" type="Area3D"]
 script = ExtResource("1_uge3r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_fs1jf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.00855058, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_2edca")
-surface_material_override/0 = SubResource("StandardMaterial3D_uge3r")
+shape = SubResource("BoxShape3D_uge3r")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.813598, 0.581428, 0, -0.581428, -0.813598, 0.0324925, 0.641076, 1.32392)
+transform = Transform3D(1, 0, 0, 0, -0.813598, 0.581428, 0, -0.581428, -0.813598, 0.19945, 0.348286, 0.308164)
 light_color = Color(1, 0.894118, 1, 1)
 light_energy = 10.0
 shadow_enabled = true
-spot_range = 652.589
+spot_range = 99.4647
 spot_attenuation = 0.5
 spot_angle = 8.83144
 
