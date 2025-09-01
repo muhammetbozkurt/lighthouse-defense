@@ -67,6 +67,7 @@ var held_turret: StaticBody3D = null
 @onready var collider: CollisionShape3D = $Collider
 @onready var manager: Node3D = %Manager
 @onready var deploy_point: Marker3D = $DeployPoint
+@onready var animation_player: AnimationPlayer = $Appearance/AnimationPlayer
 
 
 func get_player_action(base_name: String) -> String:
@@ -97,6 +98,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			place_held_turret()
 		else:
 			pickup_turret()
+
+
+func _update_animations() -> void:
+	# Guard clause in case you forgot to assign the AnimationPlayer
+	if not animation_player:
+		return
+
+	var horizontal_velocity = velocity
+	horizontal_velocity.y = 0 # We only care about movement on the ground plane
+
+	var is_moving: bool = horizontal_velocity.length() > 0.1
+
+
+	if is_moving:
+		# Play the "sprint" animation if it's not already the current one
+		if animation_player.current_animation != "run/Root|Run":
+			animation_player.play("run/Root|Run")
+	else:
+		# Play the "idle" animation if it's not already the current one
+		if animation_player.current_animation != "idle/Root|Idle":
+			animation_player.play("idle/Root|Idle")
 
 func _physics_process(delta: float) -> void:
 	# Gamepad look handling (for all players)
@@ -139,8 +161,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 		velocity.z = 0
+		
+	
 	
 	move_and_slide()
+	
+	_update_animations()
 
 
 ## Handles gamepad right-stick look

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxv8qv2x6hios"]
+
+[ext_resource type="PackedScene" uid="uid://cislbnxx0fdg3" path="res://GLB format/tower-slant-roof.glb" id="1_d7po0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qtlar"]
+size = Vector3(1, 2, 1)
+
+[node name="House" type="StaticBody3D"]
+
+[node name="tower-slant-roof2" parent="." instance=ExtResource("1_d7po0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_qtlar")

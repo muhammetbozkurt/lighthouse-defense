@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://c021u5iesxvtq"]
+[gd_scene load_steps=11 format=3 uid="uid://c021u5iesxvtq"]
 
 [ext_resource type="Script" uid="uid://c878tfbu3wqwe" path="res://scripts/tower.gd" id="1_2x682"]
 [ext_resource type="PackedScene" uid="uid://dsgssip3b78yt" path="res://GLB format/tower-square-mid.glb" id="2_jfguu"]
 [ext_resource type="PackedScene" uid="uid://c770cjgpc3r0d" path="res://GLB format/tower-square-mid-windows.glb" id="3_85u2j"]
 [ext_resource type="PackedScene" uid="uid://c0eh2ob6ic1ad" path="res://GLB format/tower-square-mid-door.glb" id="4_xl0gn"]
 [ext_resource type="PackedScene" uid="uid://bnm2kmwggj53p" path="res://GLB format/tower-square.glb" id="5_vqps3"]
+[ext_resource type="PackedScene" uid="uid://bkd32h2mbav3" path="res://GLB format/tower-square-roof.glb" id="5_xl0gn"]
+[ext_resource type="PackedScene" uid="uid://gjy0k4bdvgu7" path="res://GLB format/wall-corner.glb" id="7_vqps3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qfw7u"]
 size = Vector3(1, 8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p8022"]
 size = Vector3(0.1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olwqo"]
+size = Vector3(5, 1, 5)
 
 [node name="Tower" type="StaticBody3D"]
 script = ExtResource("1_2x682")
@@ -23,8 +28,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="tower-square-mid-windows2" parent="." instance=ExtResource("3_85u2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="tower-square-mid-door2" parent="." instance=ExtResource("4_xl0gn")]
 
 [node name="tower-square2" parent="." instance=ExtResource("5_vqps3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
@@ -59,3 +62,84 @@ shape = SubResource("BoxShape3D_p8022")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="CollisionShape3D/StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0253756, 4.23189, 0.449717)
 shape = SubResource("BoxShape3D_p8022")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="tower-square-roof9" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00171, 0.996572, 1.00224)
+
+[node name="tower-square-roof3" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="tower-square-roof2" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="tower-square-roof4" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="tower-square-roof5" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1)
+
+[node name="tower-square-roof6" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="tower-square-roof7" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+
+[node name="tower-square-roof8" parent="StaticBody3D" instance=ExtResource("5_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -1)
+
+[node name="tower-square-mid2" parent="StaticBody3D" instance=ExtResource("2_jfguu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="tower-square-mid-windows6" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="tower-square-mid-door2" parent="StaticBody3D" instance=ExtResource("4_xl0gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="tower-square-mid-windows7" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="wall-corner2" parent="StaticBody3D" instance=ExtResource("7_vqps3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="tower-square-mid-windows8" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999936, 0.00288248, 1.99942)
+
+[node name="tower-square-mid-windows9" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="tower-square-mid-windows11" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="tower-square-mid-windows10" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="wall-corner3" parent="StaticBody3D" instance=ExtResource("7_vqps3")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.00401, 0, 1.99389)
+
+[node name="wall-corner5" parent="StaticBody3D" instance=ExtResource("7_vqps3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 2)
+
+[node name="wall-corner4" parent="StaticBody3D" instance=ExtResource("7_vqps3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -2)
+
+[node name="tower-square-mid-windows12" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="tower-square-mid-windows13" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0051, 4.76837e-07, 2.00097)
+
+[node name="tower-square-mid-windows14" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.00171)
+
+[node name="tower-square-mid-windows15" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999936, 0.00288248, -2.00229)
+
+[node name="tower-square-mid-windows16" parent="StaticBody3D" instance=ExtResource("3_85u2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0051, 4.76837e-07, -2.00074)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_olwqo")
