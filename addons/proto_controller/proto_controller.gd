@@ -51,12 +51,14 @@ extends CharacterBody3D
 ## Base name of Input Action to move a turret.
 @export var input_move_turret : String = "move_turret"
 
-
+#we might want to use enums instead of these mess of bools
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
 var held_turret: StaticBody3D = null
+var is_punch_jab = true
+var is_attacking: bool = false
 
 @export_group("Interaction")
 @export var interaction_ray_length : float = 10.0
@@ -99,11 +101,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			pickup_turret()
 
-
 func _update_animations() -> void:
 	# Guard clause in case you forgot to assign the AnimationPlayer
 	if not animation_player:
 		return
+	
+	if is_attacking:
+		return
+
 
 	var horizontal_velocity = velocity
 	horizontal_velocity.y = 0 # We only care about movement on the ground plane
@@ -113,12 +118,12 @@ func _update_animations() -> void:
 
 	if is_moving:
 		# Play the "sprint" animation if it's not already the current one
-		if animation_player.current_animation != "run/Root|Run":
-			animation_player.play("run/Root|Run")
+		if animation_player.current_animation != "Walk":
+			animation_player.play("Walk")
 	else:
 		# Play the "idle" animation if it's not already the current one
-		if animation_player.current_animation != "idle/Root|Idle":
-			animation_player.play("idle/Root|Idle")
+		if animation_player.current_animation != "Idle":
+			animation_player.play("Idle")
 
 func _physics_process(delta: float) -> void:
 	# Gamepad look handling (for all players)
@@ -143,6 +148,9 @@ func _physics_process(delta: float) -> void:
 		move_speed = sprint_speed
 	else:
 		move_speed = base_speed
+		
+	if Input.is_action_just_pressed("p1_tower_exit"):
+		exit_tower()
 
 	if can_move:
 		var input_dir := Input.get_vector(
@@ -164,10 +172,18 @@ func _physics_process(delta: float) -> void:
 		
 	
 	
+	
 	move_and_slide()
 	
 	_update_animations()
+	
+	if Input.is_action_just_pressed("p1_punch") and player_id == 1 :
+		punch_attack()
 
+
+func _on_animation_player_animation_finished(anim_name: String):
+	if anim_name.contains("Punch"):
+		is_attacking = false
 
 ## Handles gamepad right-stick look
 func handle_gamepad_look():
@@ -195,11 +211,9 @@ func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
 
-
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
-
 
 func pickup_turret():
 	var space_state = get_world_3d().direct_space_state
@@ -239,3 +253,13 @@ func place_held_turret():
 		turret_to_place.place()
 		turret_to_place.add_to_group("turrets") # Add back to turrets group
 		print("Placed turret: ", turret_to_place.name)
+		
+func exit_tower():
+	manager.exit_tower.emit(player_id)
+
+func punch_attack():
+	if is_attacking:
+		return
+		
+	is_attacking = true
+	animation_player.play("Punch_Cross")
