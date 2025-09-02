@@ -31,6 +31,12 @@ transform = Transform3D(0.997018, 0.0509738, 0.0579406, -0.0771715, 0.658556, 0.
 
 [node name="Tower" parent="." instance=ExtResource("4_pkg7o")]
 
+[node name="TowerExit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.01301)
+
+[node name="PortalPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.83512, 0)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00585651, -0.0884396, 0.01087)
 use_collision = true
@@ -44,8 +50,9 @@ environment = SubResource("Environment_f3sb7")
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.0804546, 0.284327, 2.80456)
 landing_zone = NodePath("../PortalPoint")
 
-[node name="Projection" parent="." instance=ExtResource("4_aqk2v")]
+[node name="Projection" parent="." node_paths=PackedStringArray("exit_point") instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00383997, 8.3989, -0.0447168)
+exit_point = NodePath("../TowerExit")
 
 [node name="SplitScreenContainer" type="Control" parent="."]
 layout_mode = 3
@@ -93,6 +100,7 @@ render_target_update_mode = 4
 
 [node name="ProtoController" parent="SplitScreenContainer/P2_ViewportContainer/P2_ViewportContainer" instance=ExtResource("1_f3sb7")]
 transform = Transform3D(0.663135, 0, 0, 0, 0.487698, 0, 0, 0, 0.586394, 0.737293, 0, 5.74136)
+up_direction = Vector3(0.0703492, 0.0703492, 0.995039)
 player_id = 2
 
 [node name="Forest" type="Node3D" parent="."]
@@ -223,9 +231,6 @@ transform = Transform3D(6.82669, 0, -1.54798, 0, 7, 0, 1.54798, 0, 6.82669, -23.
 
 [node name="House" parent="." instance=ExtResource("10_wse8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01569, -0.00544037, -19.543)
-
-[node name="PortalPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.83512, 0)
 
 [node name="Houses" type="Node3D" parent="."]
 
