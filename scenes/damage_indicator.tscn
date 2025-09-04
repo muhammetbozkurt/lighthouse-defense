@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cja53k2u47eci"]
+
+[ext_resource type="Script" uid="uid://baegdtxvfmt32" path="res://scripts/damage_indicator.gd" id="1_2sglj"]
+
+[node name="DamageIndicator" type="Label3D"]
+billboard = 1
+text = "10"
+font_size = 60
+outline_size = 8
+script = ExtResource("1_2sglj")

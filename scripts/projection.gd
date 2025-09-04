@@ -40,6 +40,8 @@ func _on_body_exited(body: Node3D) -> void:
 	current_body = null
 
 func _on_exit_tower(player_id: int):
+	if not current_body:
+		return
 	var current_player_id: int = current_body.get("player_id")
 	
 	if current_player_id == player_id and exit_point:

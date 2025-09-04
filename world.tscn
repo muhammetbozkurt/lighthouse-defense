@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbxc52jtk431k"]
+[gd_scene load_steps=14 format=3 uid="uid://bbxc52jtk431k"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cgt76278wajgg" path="res://manager.gd" id="1_tlwt5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bp48bkw513x8" path="res://scenes/tree.tscn" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://x8mfaafq05ce" path="res://scenes/rock.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://cxv8qv2x6hios" path="res://scenes/house.tscn" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://cle2rqb17cvo6" path="res://scenes/game_ui.tscn" id="11_ic0uy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
 albedo_color = Color(0.310209, 0.481456, 0, 1)
@@ -100,7 +101,6 @@ render_target_update_mode = 4
 
 [node name="ProtoController" parent="SplitScreenContainer/P2_ViewportContainer/P2_ViewportContainer" instance=ExtResource("1_f3sb7")]
 transform = Transform3D(0.663135, 0, 0, 0, 0.487698, 0, 0, 0, 0.586394, 0.737293, 0, 5.74136)
-up_direction = Vector3(0.0703492, 0.0703492, 0.995039)
 player_id = 2
 
 [node name="Forest" type="Node3D" parent="."]
@@ -263,3 +263,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33628, -0.0523815, -20.745
 
 [node name="Tree39" parent="Houses" instance=ExtResource("8_gbfbk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33628, -0.0523815, -18.6922)
+
+[node name="GameUI" parent="." instance=ExtResource("11_ic0uy")]

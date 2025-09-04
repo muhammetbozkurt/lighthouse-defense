@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp4sjf2v78thi"]
+[gd_scene load_steps=5 format=3 uid="uid://cp4sjf2v78thi"]
 
 [ext_resource type="Script" uid="uid://ddwsr35jbhepc" path="res://scenes/enemy.gd" id="1_7p1mj"]
+[ext_resource type="PackedScene" uid="uid://cja53k2u47eci" path="res://scenes/damage_indicator.tscn" id="2_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://bn3v2oaxgspdk" path="res://GLB format/siege-ram.glb" id="2_md0e3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
@@ -8,6 +9,7 @@
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_7p1mj")
+damage_indicator_scene = ExtResource("2_4ra3w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.657462, 0)
@@ -15,3 +17,8 @@ shape = SubResource("CapsuleShape3D_4ra3w")
 
 [node name="siege-ram2" parent="." instance=ExtResource("2_md0e3")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

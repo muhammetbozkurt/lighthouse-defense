@@ -5,6 +5,10 @@ extends CharacterBody3D
 @export var attack_damage: float = 2.0
 @export var attack_rate: float = 1.0
 @export var health: float = 10.0
+@export var damage_indicator_scene: PackedScene 
+
+
+@onready var attack_timer: Timer = $AttackTimer
 
 
 var manager: Node3D = null
@@ -28,17 +32,25 @@ func _process(delta: float) -> void:
 		# Check if the enemy is close enough to attack
 		var target_vector = target.global_position
 		target_vector.y = global_position.y
-		if global_position.distance_to(target_vector) < 3.0 and can_attack:
+		if global_position.distance_to(target_vector) < 4.0 and can_attack:
 			attack_target()
 			can_attack = false
-			await get_tree().create_timer(1.0 / attack_rate).timeout
-			can_attack = true
+			# Start the timer instead of awaiting
+			attack_timer.start(1.0 / attack_rate)
 	else:
 		velocity = Vector3.ZERO
 		
 func take_damage(amount: float) -> void:
 	health -= amount
 	print("enemy health: ", health, " amount: ", amount)
+	
+	if damage_indicator_scene:
+		var indicator = damage_indicator_scene.instantiate()
+		# Add it to the main scene tree so it doesn't move with the enemy
+		get_tree().current_scene.add_child(indicator)
+		# Call the start function to begin the animation
+		indicator.start(amount, global_position + Vector3.UP*1.2) # Spawn slightly above the enemy
+	
 	if health <= 0:
 		manager.death_utils()
 		queue_free()
@@ -68,3 +80,7 @@ func find_new_target() -> void:
 func _ready() -> void:
 	# Add the enemy to a group so turrets can find it
 	add_to_group("enemies")
+
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true

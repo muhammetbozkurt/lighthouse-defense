@@ -50,6 +50,8 @@ extends CharacterBody3D
 @export var input_deploy : String = "deploy_turret"
 ## Base name of Input Action to move a turret.
 @export var input_move_turret : String = "move_turret"
+@export var input_tower_exit : String = "tower_exit"
+@export var input_punch : String = "punch"
 
 #we might want to use enums instead of these mess of bools
 var mouse_captured : bool = false
@@ -59,6 +61,8 @@ var freeflying : bool = false
 var held_turret: StaticBody3D = null
 var is_punch_jab = true
 var is_attacking: bool = false
+var possible_target: Node3D = null
+var damage: int = 5
 
 @export_group("Interaction")
 @export var interaction_ray_length : float = 10.0
@@ -70,6 +74,7 @@ var is_attacking: bool = false
 @onready var manager: Node3D = %Manager
 @onready var deploy_point: Marker3D = $DeployPoint
 @onready var animation_player: AnimationPlayer = $Appearance/AnimationPlayer
+@onready var punchArea: Area3D = $PunchArea
 
 
 func get_player_action(base_name: String) -> String:
@@ -149,7 +154,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		move_speed = base_speed
 		
-	if Input.is_action_just_pressed("p1_tower_exit"):
+	if Input.is_action_just_pressed(get_player_action(input_tower_exit)):
 		exit_tower()
 
 	if can_move:
@@ -177,7 +182,7 @@ func _physics_process(delta: float) -> void:
 	
 	_update_animations()
 	
-	if Input.is_action_just_pressed("p1_punch") and player_id == 1 :
+	if Input.is_action_just_pressed(get_player_action(input_punch)):
 		punch_attack()
 
 
@@ -262,4 +267,25 @@ func punch_attack():
 		return
 		
 	is_attacking = true
-	animation_player.play("Punch_Cross")
+	if is_punch_jab:
+		animation_player.play("Punch_Cross")
+	else:
+		animation_player.play("Punch_Jab")
+		
+	is_punch_jab = not is_punch_jab
+	
+	if is_instance_valid(possible_target) and possible_target.has_method("take_damage"):
+		possible_target.take_damage(damage)
+
+"""
+this approach must be updated
+"""
+func _on_punch_area_body_entered(body: Node3D) -> void:
+	if body in get_tree().get_nodes_in_group("enemy") and is_instance_valid(body):
+		possible_target = body
+		
+
+
+func _on_punch_area_body_exited(body: Node3D) -> void:
+	if body == possible_target:
+		possible_target = null

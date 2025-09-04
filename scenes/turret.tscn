@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bof7vm0cvu8nt"]
+[gd_scene load_steps=7 format=3 uid="uid://bof7vm0cvu8nt"]
 
 [ext_resource type="Script" uid="uid://c62k2i4lpy5qi" path="res://scripts/turret.gd" id="1_x3mc5"]
+[ext_resource type="PackedScene" uid="uid://cja53k2u47eci" path="res://scenes/damage_indicator.tscn" id="2_el7wl"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_el7wl"]
 
@@ -16,6 +17,7 @@ height = 0.5
 
 [node name="Turret" type="StaticBody3D"]
 script = ExtResource("1_x3mc5")
+damage_indicator_scene = ExtResource("2_el7wl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_el7wl")

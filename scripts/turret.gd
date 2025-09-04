@@ -8,6 +8,8 @@ extends StaticBody3D
 @onready var timer: Timer = $Timer
 @onready var attack_range: Area3D = $AttackRange
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@export var damage_indicator_scene: PackedScene 
+
 
 var can_attack: bool = true
 var target: CharacterBody3D = null
@@ -47,6 +49,13 @@ func place() -> void:
 
 func take_damage(amount: float) -> void:
 	health -= amount
+	if damage_indicator_scene:
+		var indicator = damage_indicator_scene.instantiate()
+		# Add it to the main scene tree so it doesn't move with the enemy
+		get_tree().current_scene.add_child(indicator)
+		# Call the start function to begin the animation
+		indicator.start(amount, global_position + Vector3.UP*1.2, Color(Color.ORANGE, 0.8)) #
+	
 	if health <= 0:
 		queue_free()
 

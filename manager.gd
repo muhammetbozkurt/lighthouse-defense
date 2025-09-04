@@ -14,6 +14,7 @@ extends Node3D
 @export var turret_limit = 6
 
 signal exit_tower(player_id: int)
+signal health_changed(current_health, max_health)
 
 var is_day: bool = true
 var target_energy: float = 1.0
