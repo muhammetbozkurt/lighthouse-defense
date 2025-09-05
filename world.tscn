@@ -26,6 +26,7 @@ turret_scene = ExtResource("2_dwbse")
 enemy_scene = ExtResource("2_036b0")
 initial_wave_size = 10
 wave_size_increment = 3
+turret_limit = 1
 
 [node name="Sun" type="DirectionalLight3D" parent="Manager"]
 transform = Transform3D(0.997018, 0.0509738, 0.0579406, -0.0771715, 0.658556, 0.748564, 0, -0.750803, 0.660526, 26.9119, 141.909, 59.1284)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dycnhn8h3w8gx"]
+[gd_scene load_steps=4 format=3 uid="uid://dycnhn8h3w8gx"]
 
 [ext_resource type="Script" uid="uid://mf6lqovfs43n" path="res://scripts/projection.gd" id="1_uge3r"]
+[ext_resource type="PackedScene" uid="uid://1ltsefetb3s1" path="res://GLB format/siege-ballista.glb" id="2_fs1jf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uge3r"]
 size = Vector3(0.9, 0.1, 0.9)
@@ -8,11 +9,14 @@ size = Vector3(0.9, 0.1, 0.9)
 [node name="Projection" type="Area3D"]
 script = ExtResource("1_uge3r")
 
+[node name="Ballista" parent="." instance=ExtResource("2_fs1jf")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, -2.62268e-08, -0.3, -1.14641e-15, 0.3, -2.62268e-08, 1.31134e-08, 0, 0.3, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_uge3r")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.813598, 0.581428, 0, -0.581428, -0.813598, 0.19945, 0.348286, 0.308164)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.348, 0.308)
 light_color = Color(1, 0.894118, 1, 1)
 light_energy = 10.0
 shadow_enabled = true

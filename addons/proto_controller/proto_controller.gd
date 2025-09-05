@@ -58,10 +58,11 @@ var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
-var held_turret: StaticBody3D = null
+var held_turret: Node3D = null
 var is_punch_jab = true
 var is_attacking: bool = false
 var possible_target: Node3D = null
+var possible_decomposable: Node3D = null
 var damage: int = 5
 
 @export_group("Interaction")
@@ -102,9 +103,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if can_move_turrets and Input.is_action_just_pressed(get_player_action(input_move_turret)):
 		if held_turret:
-			place_held_turret()
+			place_held()
 		else:
-			pickup_turret()
+			pickup()
 
 func _update_animations() -> void:
 	# Guard clause in case you forgot to assign the AnimationPlayer
@@ -220,7 +221,7 @@ func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
 
-func pickup_turret():
+func pickup():
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
 		camera.global_position, 
@@ -232,19 +233,19 @@ func pickup_turret():
 	if result:
 		var body = result.collider
 		# Check if we hit a turret that can be picked up
-		if body.is_in_group("turrets") and body.has_method("pickup"):
+		if body.is_in_group("portable") and body.has_method("pickup"):
 			held_turret = body
-			held_turret.remove_from_group("turrets") # Temporarily remove from group
+			held_turret.remove_from_group("portable") # Temporarily remove from group
 			held_turret.pickup()
 			
 			# Reparent the turret to the DeployPoint to carry it
 			held_turret.reparent(deploy_point)
 			held_turret.position = Vector3.ZERO
 			held_turret.rotation = Vector3.ZERO
-			print("Picked up turret: ", held_turret.name)
+			print("Picked up: ", held_turret.name)
 
 ## Places the currently held turret.
-func place_held_turret():
+func place_held():
 	if not is_instance_valid(held_turret):
 		return
 	
@@ -256,7 +257,7 @@ func place_held_turret():
 	
 	if turret_to_place.has_method("place"):
 		turret_to_place.place()
-		turret_to_place.add_to_group("turrets") # Add back to turrets group
+		turret_to_place.add_to_group("portable") # Add back to turrets group
 		print("Placed turret: ", turret_to_place.name)
 		
 func exit_tower():
@@ -276,6 +277,9 @@ func punch_attack():
 	
 	if is_instance_valid(possible_target) and possible_target.has_method("take_damage"):
 		possible_target.take_damage(damage)
+		
+	if is_instance_valid(possible_decomposable) and possible_decomposable.has_method("chop_hit"):
+		possible_decomposable.chop_hit(damage)
 
 """
 this approach must be updated
@@ -283,9 +287,20 @@ this approach must be updated
 func _on_punch_area_body_entered(body: Node3D) -> void:
 	if body in get_tree().get_nodes_in_group("enemy") and is_instance_valid(body):
 		possible_target = body
-		
 
 
 func _on_punch_area_body_exited(body: Node3D) -> void:
 	if body == possible_target:
 		possible_target = null
+
+
+func _on_punch_area_area_entered(area: Area3D) -> void:
+	var body = area.get_parent_node_3d()
+	if body in get_tree().get_nodes_in_group("tree") and is_instance_valid(body):
+		possible_decomposable = body
+
+
+func _on_punch_area_area_exited(area: Area3D) -> void:
+	var body = area.get_parent_node_3d()
+	if body == possible_decomposable:
+		possible_decomposable = null

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://byks6qy6re65b"
-path="res://.godot/imported/characterMedium.fbx-d7b9b7b7e1f0b4277f0331a7e31441e2.scn"
+uid="uid://4wy1blcavktu"
+path="res://.godot/imported/tree-log.glb-ea890d659fcda42ada5bb801a540a831.scn"
 
 [deps]
 
-source_file="res://kenney_animated-characters-3/Model/characterMedium.fbx"
-dest_files=["res://.godot/imported/characterMedium.fbx-d7b9b7b7e1f0b4277f0331a7e31441e2.scn"]
+source_file="res://GLB format/tree-log.glb"
+dest_files=["res://.godot/imported/tree-log.glb-ea890d659fcda42ada5bb801a540a831.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

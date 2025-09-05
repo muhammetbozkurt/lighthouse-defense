@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp48bkw513x8"]
+[gd_scene load_steps=5 format=3 uid="uid://bp48bkw513x8"]
 
 [ext_resource type="PackedScene" uid="uid://d3wrhx3m1vp14" path="res://GLB format/tree-large.glb" id="1_avsvi"]
+[ext_resource type="Script" uid="uid://blotmvoms0run" path="res://scripts/tree.gd" id="1_vplca"]
+[ext_resource type="PackedScene" uid="uid://0oa2rhkb0fbv" path="res://scenes/tree_log.tscn" id="2_viusy"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vplca"]
-height = 1.0
-radius = 0.1
+height = 1.22754
+radius = 0.15
 
 [node name="Tree" type="Node3D"]
+script = ExtResource("1_vplca")
+log_scene = ExtResource("2_viusy")
 
 [node name="Tree" type="StaticBody3D" parent="."]
 
@@ -14,4 +18,10 @@ radius = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tree"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_vplca")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61377, 0)
 shape = SubResource("CylinderShape3D_vplca")

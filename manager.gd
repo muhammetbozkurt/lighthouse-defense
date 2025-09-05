@@ -110,6 +110,7 @@ func deploy_turret(position: Vector3) -> void:
 		get_tree().current_scene.add_child(turret_instance)
 		# Add the turret to a group so enemies can find it
 		turret_instance.add_to_group("turrets")
+		turret_instance.add_to_group("portable")
 		print("Turret deployed!")
 
 func _on_wave_delay_timer_timeout() -> void:
