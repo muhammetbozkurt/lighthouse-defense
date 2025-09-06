@@ -7,6 +7,7 @@ var is_active := true
 
 func _ready() -> void:
 	add_to_group("portable")
+	add_to_group("logs")
 
 
 # New function to handle being picked up

@@ -27,11 +27,13 @@ func _on_body_entered(body: Node3D) -> void:
 	is_light_mounted = true
 	if body.name == "ProtoController":
 		current_body = body
+		current_body.can_use_crosbow = true
 
 
 func _on_body_exited(body: Node3D) -> void:
 	print("light unmounted")
 	is_light_mounted = false
+	
 	current_body = null
 
 func _on_exit_tower(player_id: int):
@@ -41,4 +43,5 @@ func _on_exit_tower(player_id: int):
 	
 	if current_player_id == player_id and exit_point:
 		is_light_mounted = false
+		current_body.can_use_crosbow = false
 		current_body.global_position = exit_point.global_position

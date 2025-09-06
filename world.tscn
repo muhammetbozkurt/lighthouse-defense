@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbxc52jtk431k"]
+[gd_scene load_steps=15 format=3 uid="uid://bbxc52jtk431k"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://cgt76278wajgg" path="res://manager.gd" id="1_tlwt5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://x8mfaafq05ce" path="res://scenes/rock.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://cxv8qv2x6hios" path="res://scenes/house.tscn" id="10_wse8f"]
 [ext_resource type="PackedScene" uid="uid://cle2rqb17cvo6" path="res://scenes/game_ui.tscn" id="11_ic0uy"]
+[ext_resource type="PackedScene" uid="uid://bmehc3tqxrw3e" path="res://scenes/log_to_arrow_converter.tscn" id="11_k3n1d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
 albedo_color = Color(0.310209, 0.481456, 0, 1)
@@ -18,6 +19,9 @@ albedo_color = Color(0.310209, 0.481456, 0, 1)
 [sub_resource type="Environment" id="Environment_f3sb7"]
 
 [node name="World" type="Node3D"]
+
+[node name="GameUI" parent="." instance=ExtResource("11_ic0uy")]
+layer = 2
 
 [node name="Manager" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -265,4 +269,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33628, -0.0523815, -20.745
 [node name="Tree39" parent="Houses" instance=ExtResource("8_gbfbk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33628, -0.0523815, -18.6922)
 
-[node name="GameUI" parent="." instance=ExtResource("11_ic0uy")]
+[node name="LogToArrowConverter" parent="." instance=ExtResource("11_k3n1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64139, 0, 3.19964)

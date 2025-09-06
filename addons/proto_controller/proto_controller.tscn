@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=7 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://cojigm41eccgt" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://di4ip1ht3f6q0" path="res://player_animation/AnimationLibrary_Godot_Standard.glb" id="2_wr06p"]
+[ext_resource type="PackedScene" uid="uid://bdq1lwdfu4iua" path="res://scenes/crossbow.tscn" id="3_5hfox"]
+[ext_resource type="PackedScene" uid="uid://dan3l6ynl2hc5" path="res://scenes/arrow.tscn" id="3_6dqce"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g2uji"]
 height = 1.0
@@ -25,6 +27,11 @@ transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0.0255544, 0.93
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1.50799, 0, 0, 0, 2.05045, 0, 0, 0, 1.70534, -0.024267, 0.0824825, 0.564859)
 fov = 65.1488
+
+[node name="Crossbow" parent="Head/Camera3D" instance=ExtResource("3_5hfox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+arrow_scene = ExtResource("3_6dqce")
 
 [node name="DeployPoint" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, -1)

@@ -65,6 +65,8 @@ var possible_target: Node3D = null
 var possible_decomposable: Node3D = null
 var damage: int = 5
 
+var can_use_crosbow: bool = false
+
 @export_group("Interaction")
 @export var interaction_ray_length : float = 10.0
 
@@ -76,6 +78,7 @@ var damage: int = 5
 @onready var deploy_point: Marker3D = $DeployPoint
 @onready var animation_player: AnimationPlayer = $Appearance/AnimationPlayer
 @onready var punchArea: Area3D = $PunchArea
+@onready var crossbow: Node3D = $Head/Camera3D/Crossbow
 
 
 func get_player_action(base_name: String) -> String:
@@ -86,6 +89,7 @@ func _ready() -> void:
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	
+	crossbow.manager = manager
 	# Only Player 1 captures the mouse
 	if player_id == 1:
 		capture_mouse()
@@ -184,7 +188,11 @@ func _physics_process(delta: float) -> void:
 	_update_animations()
 	
 	if Input.is_action_just_pressed(get_player_action(input_punch)):
-		punch_attack()
+		
+		if can_use_crosbow:
+			crossbow.shoot_arrow()
+		else:
+			punch_attack()
 
 
 func _on_animation_player_animation_finished(anim_name: String):
@@ -304,3 +312,4 @@ func _on_punch_area_area_exited(area: Area3D) -> void:
 	var body = area.get_parent_node_3d()
 	if body == possible_decomposable:
 		possible_decomposable = null
+		

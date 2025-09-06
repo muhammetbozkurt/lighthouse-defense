@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dan3l6ynl2hc5"]
+
+[ext_resource type="Script" uid="uid://ch1g0xxf5eoqe" path="res://scripts/arrow.gd" id="1_umosx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_umosx"]
+height = 0.4
+radius = 0.01
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_23jat"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_umosx"]
+top_radius = 0.02
+bottom_radius = 0.001
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_23jat"]
+height = 0.1
+radius = 0.01
+
+[node name="Arrow" type="RigidBody3D"]
+script = ExtResource("1_umosx")
+
+[node name="ExistanceTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_umosx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_23jat")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.999507, -1.37225e-09, -0.0313933, -0.0313933, -4.36898e-08, -0.999507, 0, 1, -4.37114e-08, 0, 0, -0.256331)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("CylinderMesh_umosx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_23jat")
+
+[connection signal="timeout" from="ExistanceTimer" to="." method="_on_existance_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

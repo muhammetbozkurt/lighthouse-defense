@@ -16,7 +16,7 @@ offset_right = 191.0
 offset_bottom = 60.0
 grow_horizontal = 2
 
-[node name="HealthLabel" type="Label" parent="."]
+[node name="ArrowCountLabel" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

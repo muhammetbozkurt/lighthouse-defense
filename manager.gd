@@ -11,10 +11,15 @@ extends Node3D
 #@export var min_spawn_distance: float = 50.0
 @export var max_spawn_distance: float = 10.0
 
-@export var turret_limit = 6
+@export_group("Defence Settings")
+@export var turret_limit = 0
+@export var arrow_stash_size = 30
+@export var arrow_count = 0
+@export var log_to_arrow = 3
 
 signal exit_tower(player_id: int)
 signal health_changed(current_health, max_health)
+signal arrow_count_change(current_count: int, max_count: int)
 
 var is_day: bool = true
 var target_energy: float = 1.0
@@ -34,6 +39,8 @@ func _ready() -> void:
 	wave_delay_timer = Timer.new()
 	add_child(wave_delay_timer)
 	wave_delay_timer.connect("timeout", _on_wave_delay_timer_timeout)
+	
+	arrow_count_change.emit(arrow_count, arrow_stash_size)
 
 func _process(delta: float) -> void:
 	if check_wave_end():
@@ -64,8 +71,6 @@ func death_utils():
 	if enemies_alive <= 0:
 		enemies_alive = 0
 		wave_in_progress = false 
-	
-	
 
 func start_next_wave() -> void:
 	wave_in_progress = true
@@ -116,3 +121,18 @@ func deploy_turret(position: Vector3) -> void:
 func _on_wave_delay_timer_timeout() -> void:
 	# This function is now the trigger for starting the next wave
 	pass
+
+
+func add_arrow_to_stash() -> void:
+	arrow_count = min(log_to_arrow+ arrow_count, arrow_stash_size)
+	arrow_count_change.emit(arrow_count, arrow_stash_size)
+
+
+func deacrease_arrow_count(count: int = 1) -> void:
+	arrow_count = max(arrow_count - count, 0)
+	arrow_count_change.emit(arrow_count, arrow_stash_size)
+	
+
+
+func can_shoot_arrow() -> bool:
+	return arrow_count > 0
