@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cmfmr2c17v17j"
-path="res://.godot/imported/tower-square-top-color.glb-842682db31fda4042022d6eb55ad8183.scn"
+uid="uid://4wy1blcavktu"
+path="res://.godot/imported/tree-log.glb-f8d1dce0f55fa687b2603849ddc83a00.scn"
 
 [deps]
 
-source_file="res://GLB format/tower-square-top-color.glb"
-dest_files=["res://.godot/imported/tower-square-top-color.glb-842682db31fda4042022d6eb55ad8183.scn"]
+source_file="res://assets/models/tree-log.glb"
+dest_files=["res://.godot/imported/tree-log.glb-f8d1dce0f55fa687b2603849ddc83a00.scn"]
 
 [params]
 

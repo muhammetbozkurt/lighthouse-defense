@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bkd32h2mbav3"
-path="res://.godot/imported/tower-square-roof.glb-94e01c8a90a4edf099f2a70eb964a6a0.scn"
+uid="uid://bn3v2oaxgspdk"
+path="res://.godot/imported/siege-ram.glb-76060eefc2164add7d915bd128207141.scn"
 
 [deps]
 
-source_file="res://GLB format/tower-square-roof.glb"
-dest_files=["res://.godot/imported/tower-square-roof.glb-94e01c8a90a4edf099f2a70eb964a6a0.scn"]
+source_file="res://assets/models/siege-ram.glb"
+dest_files=["res://.godot/imported/siege-ram.glb-76060eefc2164add7d915bd128207141.scn"]
 
 [params]
 

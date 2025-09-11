@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dahr53uegqe5y"
-path="res://.godot/imported/siege-ballista.glb-5b9dd5cede0428241964cfa8d2ae2267.scn"
+uid="uid://c770cjgpc3r0d"
+path="res://.godot/imported/tower-square-mid-windows.glb-59ea400192eff84a03a45a1e076a4503.scn"
 
 [deps]
 
-source_file="res://siege-ballista.glb"
-dest_files=["res://.godot/imported/siege-ballista.glb-5b9dd5cede0428241964cfa8d2ae2267.scn"]
+source_file="res://assets/models/tower-square-mid-windows.glb"
+dest_files=["res://.godot/imported/tower-square-mid-windows.glb-59ea400192eff84a03a45a1e076a4503.scn"]
 
 [params]
 

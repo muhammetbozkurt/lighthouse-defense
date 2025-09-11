@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cp4sjf2v78thi"]
 
-[ext_resource type="Script" uid="uid://ddwsr35jbhepc" path="res://scenes/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://ddwsr35jbhepc" path="res://scripts/enemy.gd" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://cja53k2u47eci" path="res://scenes/damage_indicator.tscn" id="2_4ra3w"]
-[ext_resource type="PackedScene" uid="uid://bn3v2oaxgspdk" path="res://GLB format/siege-ram.glb" id="2_md0e3"]
+[ext_resource type="PackedScene" uid="uid://bn3v2oaxgspdk" path="res://assets/models/siege-ram.glb" id="2_md0e3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
 

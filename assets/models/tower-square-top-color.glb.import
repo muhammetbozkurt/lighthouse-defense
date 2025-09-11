@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dsgssip3b78yt"
-path="res://.godot/imported/tower-square-mid.glb-ebbf88439b6db93648b0b00a11c433dd.scn"
+uid="uid://cmfmr2c17v17j"
+path="res://.godot/imported/tower-square-top-color.glb-27401787edd8e0dadf6f59d847a5f6fa.scn"
 
 [deps]
 
-source_file="res://GLB format/tower-square-mid.glb"
-dest_files=["res://.godot/imported/tower-square-mid.glb-ebbf88439b6db93648b0b00a11c433dd.scn"]
+source_file="res://assets/models/tower-square-top-color.glb"
+dest_files=["res://.godot/imported/tower-square-top-color.glb-27401787edd8e0dadf6f59d847a5f6fa.scn"]
 
 [params]
 

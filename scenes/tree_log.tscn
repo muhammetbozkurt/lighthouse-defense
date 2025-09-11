@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0oa2rhkb0fbv"]
 
-[ext_resource type="PackedScene" uid="uid://4wy1blcavktu" path="res://GLB format/tree-log.glb" id="1_dpdop"]
+[ext_resource type="PackedScene" uid="uid://4wy1blcavktu" path="res://assets/models/tree-log.glb" id="1_dpdop"]
 [ext_resource type="Script" uid="uid://bpgqmcmiegffq" path="res://scripts/tree_log.gd" id="1_j4a3d"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j4a3d"]

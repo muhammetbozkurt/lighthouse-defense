@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0eh2ob6ic1ad"
-path="res://.godot/imported/tower-square-mid-door.glb-3cee32a46ccb4ee8b58d16b44c1014de.scn"
+uid="uid://cislbnxx0fdg3"
+path="res://.godot/imported/tower-slant-roof.glb-d8a93eefa9ef66499111b2e57d707993.scn"
 
 [deps]
 
-source_file="res://GLB format/tower-square-mid-door.glb"
-dest_files=["res://.godot/imported/tower-square-mid-door.glb-3cee32a46ccb4ee8b58d16b44c1014de.scn"]
+source_file="res://assets/models/tower-slant-roof.glb"
+dest_files=["res://.godot/imported/tower-slant-roof.glb-d8a93eefa9ef66499111b2e57d707993.scn"]
 
 [params]
 

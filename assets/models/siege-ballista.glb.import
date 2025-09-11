@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bn3v2oaxgspdk"
-path="res://.godot/imported/siege-ram.glb-225c54657723b66a7c3d66a712c5aed2.scn"
+uid="uid://1ltsefetb3s1"
+path="res://.godot/imported/siege-ballista.glb-c8353ed117721145d2ee524ea838d0fe.scn"
 
 [deps]
 
-source_file="res://GLB format/siege-ram.glb"
-dest_files=["res://.godot/imported/siege-ram.glb-225c54657723b66a7c3d66a712c5aed2.scn"]
+source_file="res://assets/models/siege-ballista.glb"
+dest_files=["res://.godot/imported/siege-ballista.glb-c8353ed117721145d2ee524ea838d0fe.scn"]
 
 [params]
 

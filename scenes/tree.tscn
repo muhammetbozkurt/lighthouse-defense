@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bp48bkw513x8"]
 
-[ext_resource type="PackedScene" uid="uid://d3wrhx3m1vp14" path="res://GLB format/tree-large.glb" id="1_avsvi"]
+[ext_resource type="PackedScene" uid="uid://d3wrhx3m1vp14" path="res://assets/models/tree-large.glb" id="1_avsvi"]
 [ext_resource type="Script" uid="uid://blotmvoms0run" path="res://scripts/tree.gd" id="1_vplca"]
 [ext_resource type="PackedScene" uid="uid://0oa2rhkb0fbv" path="res://scenes/tree_log.tscn" id="2_viusy"]
 
