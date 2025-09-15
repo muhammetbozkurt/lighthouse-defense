@@ -20,4 +20,4 @@ func take_damage(amount: float) -> void:
 	
 	if current_health <= 0:
 		print("Tower has been destroyed! Game Over.")
-		get_tree().reload_current_scene()
+		get_tree().call_deferred("reload_current_scene")
