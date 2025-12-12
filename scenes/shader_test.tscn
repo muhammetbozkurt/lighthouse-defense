@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhfcapugfb22u"]
+
+[ext_resource type="Shader" uid="uid://bsyx84cqcyuou" path="res://shaders/testshader.gdshader" id="1_im7wb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_im7wb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3x27y"]
+noise = SubResource("FastNoiseLite_im7wb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fthar"]
+resource_name = "testshader"
+render_priority = 0
+shader = ExtResource("1_im7wb")
+shader_parameter/height_scale = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_3x27y")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ugewl"]
+material = SubResource("ShaderMaterial_fthar")
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="ShaderTest" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ugewl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.997778, 0.0630362, -0.0215778, -0.0637035, 0.997463, -0.0317747, 0.0195201, 0.0330787, 0.999262, -0.0353759, 0.631087, 0)
+visible = false

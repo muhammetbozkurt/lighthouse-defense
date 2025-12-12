@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c7kllla01234"]
+
+[ext_resource type="Shader" uid="uid://ernftxc7iwo5" path="res://shaders/toon_fire.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://b8jkkj345678" path="res://assets/fire_noise.tres" id="2_noise"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2"]
+noise_type = 0
+frequency = 0.02
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2"]
+seamless = true
+noise = SubResource("FastNoiseLite_2")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/noise_texture = ExtResource("2_noise")
+shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_2")
+shader_parameter/root_color = Color(0.745079, 0.8014, 0.906922, 1)
+shader_parameter/tip_color = Color(0.377408, 0.524738, 0.849768, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0, 0.5)
+shader_parameter/fire_aperture = 0.3

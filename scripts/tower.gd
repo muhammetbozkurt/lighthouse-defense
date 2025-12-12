@@ -11,7 +11,6 @@ func _ready() -> void:
 	manager.health_changed.emit(current_health, max_health)
 
 func take_damage(amount: float) -> void:
-	print("---- tower take damage ----")
 	current_health -= amount
 	current_health = max(0, current_health) # Prevent health from going below zero
 	
